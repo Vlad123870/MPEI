@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="mpei1/mpei1.vcxproj" Id="5c0ecbcc-7d2a-4287-8aa9-473a71989c3d" />
+</Solution>
