@@ -145,6 +145,7 @@
     <ClCompile Include="laba2.c" />
     <ClCompile Include="laba3.c" />
     <ClCompile Include="laba4.c" />
+    <ClCompile Include="laba40.c" />
     <ClCompile Include="Spravochnik.c" />
     <ClCompile Include="mpei1.c" />
   </ItemGroup>
