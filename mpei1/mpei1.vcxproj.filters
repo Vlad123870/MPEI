@@ -33,5 +33,16 @@
     <ClCompile Include="laba2.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="danya.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="laba4.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
   </ItemGroup>
 </Project>
