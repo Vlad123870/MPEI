@@ -58,69 +58,67 @@ int laba3() {
 	int sum = 0;
 	printf("Enter your array length: ");
 	scanf_s("%d", &n);
-	int *X = NULL;
-	int *Y = NULL;
+	int *X;
+	int *Y;
 	if (n < 1 || n > 20)
 	{
 		printf("Error, because array length is not acceptable\n");
-		return 1;
 	}
 	else {
 		X = (int*)malloc(n * sizeof(int));
 		Y = (int*)malloc(n * sizeof(int));
-		if (X == NULL || Y == NULL) {
+		if (!X || !Y) {
 			printf("Memory allocation failed\n");
 			free(X);
 			free(Y);
-			return 1;
 		}
 
-		printf("--- Enter array X ---\n");
-		for (int i = 0; i < n; i++) {
-			printf("arrx[%d] = ", i);
-			scanf_s("%d", &X[i]);
-		}
+		else {
+			printf("--- Enter array X ---\n");
+			for (int i = 0; i < n; i++) {
+				printf("arrx[%d] = ", i);
+				scanf_s("%d", &X[i]);
+			}
 
-		printf("--- Enter array Y ---\n");
-		for (int i = 0; i < n; i++) {
-			printf("arry[%d] = ", i);
-			scanf_s("%d", &Y[i]);
-		}
+			printf("--- Enter array Y ---\n");
+			for (int i = 0; i < n; i++) {
+				printf("arry[%d] = ", i);
+				scanf_s("%d", &Y[i]);
+			}
 
+			printf("--- Array X ---\n");
+			for (int i = 0; i < n; i++) {
+				printf("%d \n", X[i]);
+			}
 
-	printf("--- Array X ---\n");
-	for (int i = 0; i < n; i++) {
-		printf("%d \n", X[i]);
-	}
+			printf("--- Array Y ---\n");
+			for (int i = 0; i < n; i++) {
+				printf("%d \n", Y[i]);
+			}
+			printf("\n\n");
 
-	printf("--- Array Y ---\n");
-	for (int i = 0; i < n; i++) {
-		printf("%d \n", Y[i]);
-	}
-	printf("\n\n");
-
-
-		for (int i = 0; i < n; i++)
-		{
-			if (X[i] > Y[i])
+			for (int i = 0; i < n; i++)
 			{
-				if (X[i] > 0)
+				if (X[i] > Y[i])
 				{
-					count += 1;
-					sum += X[i];
+					if (X[i] > 0)
+					{
+						count += 1;
+						sum += X[i];
+					}
 				}
 			}
-		}
-		if (count > 0) {
-			printf("Your result: \nSum: %d\ncount: %d\n", sum, count);
-		}
-		else
-		{
-			printf("There are not such elements in the array: no X element exceeds\n");
-		}
+			if (count > 0) {
+				printf("Your result: \nSum: %d\ncount: %d\n", sum, count);
+			}
+			else
+			{
+				printf("There are not such elements in the array: no X element exceeds\n");
+			}
 
-		free(X);
-		free(Y);
+			free(X);
+			free(Y);
+		}
 	}
 
 	return 0;

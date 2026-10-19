@@ -42,8 +42,39 @@
     <ClCompile Include="laba40.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="roma.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="inputx2.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="inputx3.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="inputx1.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="inputx4.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="inputx5.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="inputx6.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="inputx10.txt" />
+    <Text Include="inputx11.txt" />
+    <Text Include="inputy1.txt" />
+    <Text Include="inputy2.txt" />
+    <Text Include="inputy3.txt" />
+    <Text Include="inputy4.txt" />
+    <Text Include="inputy5.txt" />
+    <Text Include="inputy6.txt" />
+    <Text Include="inputy10.txt" />
+    <Text Include="inputy11.txt" />
     <Text Include="input.txt">
       <Filter>Исходные файлы</Filter>
     </Text>

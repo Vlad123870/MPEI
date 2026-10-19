@@ -146,11 +146,28 @@
     <ClCompile Include="laba3.c" />
     <ClCompile Include="laba4.c" />
     <ClCompile Include="laba40.c" />
+    <ClCompile Include="roma.c" />
     <ClCompile Include="Spravochnik.c" />
     <ClCompile Include="mpei1.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
+    <Text Include="inputx1.txt" />
+    <Text Include="inputx10.txt" />
+    <Text Include="inputx11.txt" />
+    <Text Include="inputx2.txt" />
+    <Text Include="inputx3.txt" />
+    <Text Include="inputx4.txt" />
+    <Text Include="inputx5.txt" />
+    <Text Include="inputx6.txt" />
+    <Text Include="inputy1.txt" />
+    <Text Include="inputy10.txt" />
+    <Text Include="inputy11.txt" />
+    <Text Include="inputy2.txt" />
+    <Text Include="inputy3.txt" />
+    <Text Include="inputy4.txt" />
+    <Text Include="inputy5.txt" />
+    <Text Include="inputy6.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
