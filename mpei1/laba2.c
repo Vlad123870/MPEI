@@ -16,7 +16,7 @@ int laba2() {
     }
     else
     {
-    printf("Enter number in data X: ");
+    printf("Enter number in data X: \n");
     // A1.1.3 - в цикле от 0 до n-1 считать элементы массива X
     printf("Enter number in data Y: ");
     // A1.1.4 - в цикле от 0 до n-1 считать элементы массива Y

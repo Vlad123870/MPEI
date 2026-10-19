@@ -7,7 +7,9 @@ int main() {
 	//danya();
 	//kirill();
 	//laba4();
-	laba40();
+	//laba40();
 	//roma();
+	//zashita4();
+	km1();
 	return 0;
 }

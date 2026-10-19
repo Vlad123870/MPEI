@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="danya.c" />
     <ClCompile Include="kirill.c" />
+    <ClCompile Include="km1.c" />
     <ClCompile Include="Laba1.c" />
     <ClCompile Include="laba2.c" />
     <ClCompile Include="laba3.c" />
@@ -149,6 +150,7 @@
     <ClCompile Include="roma.c" />
     <ClCompile Include="Spravochnik.c" />
     <ClCompile Include="mpei1.c" />
+    <ClCompile Include="zashita4.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />

@@ -45,6 +45,12 @@
     <ClCompile Include="roma.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="zashita4.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="km1.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputx2.txt">

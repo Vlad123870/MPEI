@@ -7,11 +7,10 @@ int laba40() {
     int count = 0;
     int sum = 0;
     int i;
-    int r;
-    int extra;
     int* X;
     int* Y;
-    FILE* fin;
+    FILE* finX;
+    FILE* finY;
     FILE* fout;
 
     printf("Enter array length n (1..20): ");
@@ -21,87 +20,64 @@ int laba40() {
     }
 
     fout = fopen("output.txt", "w");
+    finX = fopen("inputx1.txt", "r");
+    finY = fopen("inputy1.txt", "r");
+    X = (int*)malloc(n * sizeof(int));
+    Y = (int*)malloc(n * sizeof(int));
+
     if (!fout) {
-        perror("Cannot open output.txt");
+        printf("Error: cannot open output.txt\n");
+    }
+    else if (!finX) {
+        printf("Error: cannot open inputx1.txt\n");
+        fprintf(fout, "Error: cannot open inputx1.txt\n");
+    }
+    else if (!finY) {
+        printf("Error: cannot open inputy1.txt\n");
+        fprintf(fout, "Error: cannot open inputy1.txt\n");
+    }
+    else if (!X || !Y) {
+        printf("Error: memory allocation failed\n");
+        fprintf(fout, "Error: memory allocation failed\n");
     }
     else {
-        X = (int*)malloc(n * sizeof(int));
-        Y = (int*)malloc(n * sizeof(int));
+        for (i = 0; i < n; i++) {
+            fscanf(finX, "%d", &X[i]);
+        }
+        for (i = 0; i < n; i++) {
+            fscanf(finY, "%d", &Y[i]);
+        }
 
-        if (!X || !Y) {
-            printf("Error: memory allocation failed\n");
-            fprintf(fout, "Error: memory allocation failed\n");
+        fprintf(fout, "n = %d\n", n);
+        fprintf(fout, "--- Array X ---\n");
+        for (i = 0; i < n; i++) {
+            fprintf(fout, "%d\n", X[i]);
+        }
+        fprintf(fout, "--- Array Y ---\n");
+        for (i = 0; i < n; i++) {
+            fprintf(fout, "%d\n", Y[i]);
+        }
+
+        for (i = 0; i < n; i++) {
+            if (X[i] > Y[i] && X[i] > 0) {
+                count++;
+                sum += X[i];
+            }
+        }
+
+        if (count > 0) {
+            fprintf(fout, "Your result:\nSum: %d\nCount: %d\n", sum, count);
         }
         else {
-            fin = fopen("inputx1.txt", "r");
-            if (!fin) {
-                printf("Error: cannot open inputx1.txt\n");
-                fprintf(fout, "Error: cannot open inputx1.txt\n");
-            }
-            else {
-                i = 0;
-                while (i < n && fscanf(fin, "%d", &X[i]) == 1) {
-                    i++;
-                }
-                r = fscanf(fin, "%d", &extra);
-                fclose(fin);
-
-                if (i < n || r != EOF) {
-                    printf("Error: wrong or insufficient data in inputx1.txt (need exactly n integers)\n");
-                    fprintf(fout, "Error: wrong or insufficient data in inputx1.txt (need exactly n integers)\n");
-                }
-                else {
-                    fin = fopen("inputy1.txt", "r");
-                    if (!fin) {
-                        printf("Error: cannot open inputy1.txt\n");
-                        fprintf(fout, "Error: cannot open inputy1.txt\n");
-                    }
-                    else {
-                        i = 0;
-                        while (i < n && fscanf(fin, "%d", &Y[i]) == 1) {
-                            i++;
-                        }
-                        r = fscanf(fin, "%d", &extra);
-                        fclose(fin);
-
-                        if (i < n || r != EOF) {
-                            printf("Error: wrong or insufficient data in inputy1.txt (need exactly n integers)\n");
-                            fprintf(fout, "Error: wrong or insufficient data in inputy1.txt (need exactly n integers)\n");
-                        }
-                        else {
-                            fprintf(fout, "n = %d\n", n);
-                            fprintf(fout, "--- Array X ---\n");
-                            for (i = 0; i < n; i++) {
-                                fprintf(fout, "%d\n", X[i]);
-                            }
-                            fprintf(fout, "--- Array Y ---\n");
-                            for (i = 0; i < n; i++) {
-                                fprintf(fout, "%d\n", Y[i]);
-                            }
-
-                            for (i = 0; i < n; i++) {
-                                if (X[i] > Y[i] && X[i] > 0) {
-                                    count++;
-                                    sum += X[i];
-                                }
-                            }
-
-                            if (count > 0) {
-                                fprintf(fout, "Your result:\nSum: %d\nCount: %d\n", sum, count);
-                            }
-                            else {
-                                fprintf(fout, "There are no such elements in the array\n");
-                            }
-                        }
-                    }
-                }
-            }
+            fprintf(fout, "There are no such elements in the array\n");
         }
-
-        free(X);
-        free(Y);
-        fclose(fout);
     }
+
+    free(X);
+    free(Y);
+    if (finX) fclose(finX);
+    if (finY) fclose(finY);
+    if (fout) fclose(fout);
 
     return 0;
 }
