@@ -18,8 +18,6 @@ int km1() {
 			mn = B[i];
 		}
 	}
-
 	printf("%d %d", mn, num);
-	free(B);
 	return 0;
 }
