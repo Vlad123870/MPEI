@@ -87,5 +87,8 @@
     <Text Include="input.txt">
       <Filter>Исходные файлы</Filter>
     </Text>
+    <Text Include="inputlab5.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
   </ItemGroup>
 </Project>
