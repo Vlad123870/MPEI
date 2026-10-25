@@ -10,6 +10,7 @@ int main() {
 	//laba40();
 	//roma();
 	//zashita4();
-	km1();
+	//km1();
+	laba5();
 	return 0;
 }
