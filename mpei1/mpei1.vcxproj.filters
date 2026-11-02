@@ -54,6 +54,12 @@
     <ClCompile Include="laba5.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="laba7.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="laba9.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputx2.txt">
@@ -88,6 +94,9 @@
       <Filter>Исходные файлы</Filter>
     </Text>
     <Text Include="inputlab5.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="input7.txt">
       <Filter>Исходные файлы</Filter>
     </Text>
   </ItemGroup>

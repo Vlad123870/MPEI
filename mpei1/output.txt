@@ -1,8 +1,8 @@
 n = 4
---- Points (x, y) ---
-1: (1, -2)
-2: (3, 4)
-3: (5, 3)
-4: (2, 3)
-Last point: (2, 3)
-Average distance from the last point: 3.1711
+--- Array A ---
+3
+1
+4
+1
+Your result:
+m = 1

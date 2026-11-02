@@ -1,5 +1,5 @@
 ﻿
-int main() {
+int main(void) {
 	////laba1();
 	////Spravochnik();
 	//laba3();
@@ -11,6 +11,8 @@ int main() {
 	//roma();
 	//zashita4();
 	//km1();
-	laba5();
+	//laba5();
+	laba7();
+	//laba9();
 	return 0;
 }

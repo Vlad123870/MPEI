@@ -1,0 +1,7 @@
+n = 6
+--- Source array ---
+5 3 -1 8 2 0 
+--- Selection sort ---
+-1 0 2 3 5 8 
+--- Bubble sort ---
+-1 0 2 3 5 8 

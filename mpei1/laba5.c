@@ -5,9 +5,12 @@
 int laba5() {
     int n = 0;
     int m = 1;
+    int m2 = 0;
+    int k = 0;
     int i;
-    double p = 1;
-    double mx = -1;
+    double p = 0;
+    double mx = 0;
+    double mx2 = 0;
     double* A;
     FILE* fin;
     FILE* fout;
@@ -18,8 +21,8 @@ int laba5() {
         printf("Error, enter n from 1 to 20: ");
     }
 
-    fout = fopen("outputlab5.txt", "w");
-    fin = fopen("inputlab5.txt", "r");
+    fout = fopen("output.txt", "w");
+    fin = fopen("input.txt", "r");
     A = (double*)malloc(n * sizeof(double));
 
     if (!fout) {
@@ -27,7 +30,6 @@ int laba5() {
     }
     else if (!fin) {
         printf("Error: cannot open input.txt\n");
-        fprintf(fout, "Error: cannot open input.txt\n");
     }
     else if (!A) {
         printf("Error: memory allocation failed\n");
@@ -44,7 +46,9 @@ int laba5() {
             fprintf(fout, "%g\n", A[i]);
         }
 
-        for (i = 0; i < n; i++) {
+        p = A[0] * A[0];
+        mx = p;
+        for (i = 1; i < n; i++) {
             p *= A[i] * A[i];
             if (p > mx) {
                 mx = p;
@@ -52,7 +56,37 @@ int laba5() {
             }
         }
 
-        fprintf(fout, "Your result:\nm = %d\n", m);
+        fprintf(fout, "Your result:\nFirst max number: %d\n", m);
+
+        if (n < 2) {
+            fprintf(fout, "There is no second maximum\n");
+        }
+        else {
+            if (m == 1) {
+                p = A[0] * A[0];
+                p *= A[1] * A[1];
+                mx2 = p;
+                m2 = 2;
+                k = 2;
+            }
+            else {
+
+                p = A[0] * A[0];
+                mx2 = p;
+                m2 = 1;
+                k = 1;
+            }
+
+            for (i = k; i < n; i++) {
+                p *= A[i] * A[i];
+                if (i + 1 != m && p > mx2) {
+                    mx2 = p;
+                    m2 = i + 1;
+                }
+            }
+
+            fprintf(fout, "Second max number: %d\n", m2);
+        }
     }
 
     free(A);
