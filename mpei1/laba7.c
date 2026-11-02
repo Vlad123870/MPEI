@@ -1,134 +1,134 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-void choose(int* arr, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        int min_id = i;
-        for (int j = i + 1; j < n; j++) {
-            if (arr[j] < arr[min_id]) {
+/* Selection sort: find the minimum and put it at the end. */
+void choose(char* arr, int n, FILE* fout) {
+    int i, j, k, min_id;
+    char temp;
+
+    for (i = n - 1; i > 0; i--) {
+        min_id = 0;
+        for (j = 1; j <= i; j++) {
+            if ((unsigned char)arr[j] < (unsigned char)arr[min_id]) {
                 min_id = j;
             }
         }
-        int tmp = arr[i];
+        temp = arr[i];
         arr[i] = arr[min_id];
-        arr[min_id] = tmp;
+        arr[min_id] = temp;
+
+        printf("Pass %d: ", n - i);
+        fprintf(fout, "Pass %d: ", n - i);
+        for (k = 0; k < n; k++) {
+            printf("[%c] ", arr[k]);
+            fprintf(fout, "[%c] ", arr[k]);
+        }
+        printf("\n");
+        fprintf(fout, "\n");
     }
 }
 
-void bubble(int* arr, int n) {
-    for (int i = 0; i < n - 1; i++) {
-        bool swapped = false;
-        for (int j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int tmp = arr[j];
+/* Bubble sort: move the minimum to the end on every pass. */
+void bubble(char* arr, int n, FILE* fout) {
+    int i, j, k;
+    char temp;
+
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - i - 1; j++) {
+            if ((unsigned char)arr[j] < (unsigned char)arr[j + 1]) {
+                temp = arr[j];
                 arr[j] = arr[j + 1];
-                arr[j + 1] = tmp;
-                swapped = true;
+                arr[j + 1] = temp;
             }
         }
-        if (!swapped) {
-            break;
+        printf("Pass %d: ", i + 1);
+        fprintf(fout, "Pass %d: ", i + 1);
+        for (k = 0; k < n; k++) {
+            printf("[%c] ", arr[k]);
+            fprintf(fout, "[%c] ", arr[k]);
         }
+        printf("\n");
+        fprintf(fout, "\n");
     }
 }
 
-int laba7(void) {
-    int n = 0;
-    int mode = 0;
-    int read = 0;
-    int i;
-    int* arr;
-    int* work;
-    FILE* fin;
-    FILE* fout;
+int laba7(int argc, char* argv[]) {
+    const char* input_name = "input7.txt";
+    const char* output_name = "lab7.txt";
+    FILE* fin = NULL;
+    FILE* fout = NULL;
+    char* arr = NULL, * work = NULL;
+    int n = 0, mode = 0, i, c, count = 0;
+
+    if (argc > 1) input_name = argv[1];
+    if (argc > 2) output_name = argv[2];
 
     printf("Enter array length n: ");
-    while (scanf("%d", &n) != 1 || n < 1) {
-        while (getchar() != '\n') {}
-        printf("Error, enter n >= 1: ");
-    }
-
-    fin = fopen("input7.txt", "r");
-    fout = fopen("lab7.txt", "w");
-    arr = (int*)malloc(n * sizeof(int));
-    work = (int*)malloc(n * sizeof(int));
-
-    if (!fin) {
-        printf("Error: cannot open input7.txt\n");
-    }
-    else if (!fout) {
-        printf("Error: cannot open lab7.txt\n");
-    }
-    else if (!arr || !work) {
-        printf("Error: memory allocation failed\n");
-        fprintf(fout, "Error: memory allocation failed\n");
+    if (scanf("%d", &n) != 1 || n < 1) {
+        printf("Invalid array length.\n");
     }
     else {
-        for (i = 0; i < n; i++) {
-            if (fscanf(fin, "%d", &arr[i]) == 1) {
-                read++;
-            }
-        }
+        fin = fopen(input_name, "r");
+        fout = fopen(output_name, "w");
+        arr = (char*)malloc(n * sizeof(char));
+        work = (char*)malloc(n * sizeof(char));
 
-        if (read != n) {
-            printf("Error: input7.txt contains fewer than %d numbers\n", n);
-            fprintf(fout, "Error: input7.txt contains fewer than %d numbers\n", n);
+        if (fin == NULL || fout == NULL || arr == NULL || work == NULL) {
+            printf("Cannot open files or allocate memory.\n");
         }
         else {
-            fprintf(fout, "n = %d\n", n);
-            fprintf(fout, "--- Source array ---\n");
-            for (i = 0; i < n; i++) {
-                fprintf(fout, "%d ", arr[i]);
+            /* Read exactly n characters; spaces are also elements. */
+            while (count < n && (c = fgetc(fin)) != EOF) {
+                if (c != '\n' && c != '\r') {
+                    arr[count] = (char)c;
+                    count++;
+                }
             }
-            fprintf(fout, "\n");
 
-            printf("\nChoose sorting method:\n");
-            printf("1 - Selection sort (choose)\n");
-            printf("2 - Bubble sort\n");
-            printf("3 - Both\n");
-            printf("Your choice: ");
-            scanf("%d", &mode);
-
-            if (mode < 1 || mode > 3) {
-                printf("Invalid choice\n");
-                fprintf(fout, "Invalid choice\n");
+            if (count != n) {
+                printf("Not enough characters in input file.\n");
             }
             else {
-                if (mode == 1 || mode == 3) {
-                    for (i = 0; i < n; i++) {
-                        work[i] = arr[i];
-                    }
-                    choose(work, n);
-                    fprintf(fout, "--- Selection sort ---\n");
-                    for (i = 0; i < n; i++) {
-                        fprintf(fout, "%d ", work[i]);
-                    }
-                    fprintf(fout, "\n");
+                printf("Source: ");
+                fprintf(fout, "Source: ");
+                for (i = 0; i < n; i++) {
+                    printf("[%c] ", arr[i]);
+                    fprintf(fout, "[%c] ", arr[i]);
                 }
+                printf("\n");
+                fprintf(fout, "\n");
 
-                if (mode == 2 || mode == 3) {
-                    for (i = 0; i < n; i++) {
-                        work[i] = arr[i];
-                    }
-                    bubble(work, n);
-                    fprintf(fout, "--- Bubble sort ---\n");
-                    for (i = 0; i < n; i++) {
-                        fprintf(fout, "%d ", work[i]);
-                    }
-                    fprintf(fout, "\n");
+                printf("1 - Selection sort\n");
+                printf("2 - Bubble sort\n");
+                printf("3 - Both sorts\n");
+                printf("Choose: ");
+
+                if (scanf("%d", &mode) != 1 || mode < 1 || mode > 3) {
+                    printf("Invalid choice.\n");
                 }
-
-                printf("Done, result is written to lab7.txt\n");
+                else {
+                    if (mode == 1 || mode == 3) {
+                        for (i = 0; i < n; i++) work[i] = arr[i];
+                        printf("\nSelection sort (descending):\n");
+                        fprintf(fout, "\nSelection sort (descending):\n");
+                        choose(work, n, fout);
+                    }
+                    if (mode == 2 || mode == 3) {
+                        for (i = 0; i < n; i++) work[i] = arr[i];
+                        printf("\nBubble sort (descending):\n");
+                        fprintf(fout, "\nBubble sort (descending):\n");
+                        bubble(work, n, fout);
+                    }
+                    printf("\nDone. \nOutput: %s\n", output_name);
+                }
             }
         }
     }
 
     free(arr);
     free(work);
-    if (fin) fclose(fin);
-    if (fout) fclose(fout);
-
+    if (fin != NULL) fclose(fin);
+    if (fout != NULL) fclose(fout);
     return 0;
 }
