@@ -1,8 +1,11 @@
-n = 4
+n = 5
+T1 = 1
+T2 = 7
 --- Array A ---
+-8
 3
-1
-4
-1
+-1
+5
+-842150451
 Your result:
-m = 1
+Number of the last minimum: 5

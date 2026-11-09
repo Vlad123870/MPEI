@@ -1,5 +1,5 @@
 ﻿
-int main(int argc, char* argv[]) {
+int main() {
 	////laba1();
 	////Spravochnik();
 	//laba3();
@@ -12,7 +12,8 @@ int main(int argc, char* argv[]) {
 	//zashita4();
 	//km1();
 	//laba5();
-	laba7(argc, argv);
+	laba7();
 	//laba9();
+	//laba6();
 	return 0;
 }

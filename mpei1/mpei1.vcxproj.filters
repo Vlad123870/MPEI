@@ -60,6 +60,9 @@
     <ClCompile Include="laba9.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="laba6.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputx2.txt">
@@ -97,6 +100,9 @@
       <Filter>Исходные файлы</Filter>
     </Text>
     <Text Include="input7.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
+    <Text Include="input6.txt">
       <Filter>Исходные файлы</Filter>
     </Text>
   </ItemGroup>

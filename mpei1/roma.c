@@ -1,80 +1,84 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int roma()
 {
     int n = 0;
-    int* X;
-    int count;
-    float sum;
-    float sumall;
+    int i;
+    double mx;
+    double mn;
+    double x;
+    double result;
+    double* A;
     FILE* fin;
     FILE* fout;
 
-    while (n < 1 || n > 20)
-    {
-        printf("введите длину массива n: ");
+    printf("Enter array length n (1..20): ");
+    scanf("%d", &n);
+
+    while (n < 1 || n > 20) {
+        printf("Error, enter n from 1 to 20: ");
         scanf("%d", &n);
-        if (n < 1 || n > 20)
-        {
-            printf("ошибка: длина массива должна быть от 1 до 20\n");
-        }
-    }
-
-    fin = fopen("input.txt", "r");
-    X = malloc(n * sizeof(int));
-
-    for (int i = 0; i < n; i++)
-    {
-        fscanf(fin, "%d", &X[i]);
-    }
-
-    sumall = 0.0;
-    for (int i = 0; i < n; i++)
-    {
-        sumall += X[i];
-    }
-
-    count = 0;
-    sum = 0.0;
-    for (int i = 0; i < n; i++)
-    {
-        if (X[i] <= X[0])
-        {
-            sum += X[i];
-            count++;
-        }
     }
 
     fout = fopen("output.txt", "w");
+    fin = fopen("input.txt", "r");
+    A = (double*)malloc(n * sizeof(double));
 
-    fprintf(fout, "Ваши данные:\nn = %d\nX = ", n);
-    for (int i = 0; i < n; i++)
-    {
-        fprintf(fout, "%d ", X[i]);
+    if (!fout) {
+        printf("Error: cannot open output.txt\n");
     }
-    fprintf(fout, "\n");
+    else if (!fin) {
+        printf("Error: cannot open input.txt\n");
+        fprintf(fout, "Error: cannot open input.txt\n");
+    }
+    else if (!A) {
+        printf("Error: memory allocation failed\n");
+        fprintf(fout, "Error: memory allocation failed\n");
+    }
+    else {
+        for (i = 0; i < n; i++) {
+            fscanf(fin, "%lf", &A[i]);
+        }
 
-    fprintf(fout, "\nВаш результат:\n");
-    if (count == n)
-    {
-        fprintf(fout, "Все элементы подходят: %.2f\n", (double)sumall / n);
-    }
-    else if (count > 1)
-    {
-        fprintf(fout, "Среднее элементов <= X1: %.2f\n", (double)sum / count);
-        fprintf(fout, "Среднее всех элементов: %.2f\n", (double)sumall / n);
-    }
-    else
-    {
-        fprintf(fout, "Только один подходящий элемент: %d\n", X[0]);
-        fprintf(fout, "Среднее всех элементов: %.2f\n", (double)sumall / n);
+        fprintf(fout, "n = %d\n", n);
+        fprintf(fout, "--- Array A ---\n");
+
+        for (i = 0; i < n; i++) {
+            fprintf(fout, "%g\n", A[i]);
+        }
+
+        mx = fabs(A[0]);
+        mn = fabs(A[0]);
+
+        for (i = 1; i < n; i++) {
+            x = fabs(A[i]);
+
+            if (x > mx) {
+                mx = x;
+            }
+
+            if (x < mn) {
+                mn = x;
+            }
+        }
+
+        result = mx - mn;
+
+        fprintf(fout, "Your result:\n");
+        fprintf(fout, "Maximum absolute value: %g\n", mx);
+        fprintf(fout, "Minimum absolute value: %g\n", mn);
+        fprintf(fout, "Difference: %g\n", result);
+
+        printf("Done. See output.txt\n");
     }
 
-    fclose(fout);
-    free(X);
-    fclose(fin);
+    free(A);
+
+    if (fin) fclose(fin);
+    if (fout) fclose(fout);
 
     return 0;
 }
